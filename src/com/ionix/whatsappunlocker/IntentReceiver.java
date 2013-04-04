@@ -18,11 +18,12 @@ public class IntentReceiver extends BroadcastReceiver {
 	@Override
 	public void onReceive(Context ctx, Intent intent) {
 		String comp = intent.getStringExtra("comp");
+		Log.v(TAG, "IONIX: comp=" + comp);
 		if (comp.equals("{com.whatsapp/com.whatsapp.Conversation}")) {
 			// unlock lockscreen
 			KeyguardManager km = (KeyguardManager) ctx.getSystemService(Context.KEYGUARD_SERVICE);
 			if (km.inKeyguardRestrictedInputMode()) {
-				Log.d(TAG, "Unlocking screen for WhatsApp");
+				Log.v(TAG, "IONIX: Unlocking screen for WhatsApp");
 				m_klock = km.newKeyguardLock(TAG);
 				m_klock.disableKeyguard();
 			}
